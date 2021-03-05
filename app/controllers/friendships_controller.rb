@@ -3,15 +3,19 @@ class FriendshipsController < ApplicationController
   
        
     def new
-      @req= Friendship.create(user_id:current_user.id, friend_id:params[:id])
+      @req = Friendship.new
+    end
+
+    def create
+      @req = Friendship.create(user_id: current_user.id, friend_id: params[:friend_id], status: false)
   
       if @req.save
-        redirect_to user_path(params[:id])
+        redirect_to user_path(params[:friend_id])
       else
         redirect_to users_path
       end
-  
     end
+  
 
     def update
 

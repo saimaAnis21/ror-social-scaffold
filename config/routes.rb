@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only: [:index, :show]
-  resources :friendships, only: [:new, :update, :destroy]
+  resources :friendships, only: [:new, :update, :destroy, :create]
+  
   get 'friendships/(:id)', to: 'friendships#update'
   delete 'friendships/(:id)', to: 'friendships#destroy'
   resources :posts, only: [:index, :create] do
