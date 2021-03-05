@@ -30,9 +30,9 @@ class User < ApplicationRecord
   end
 
   def confirm_friend(user)
-    friendship = inverse_friendships.find { |fship| fship.user_id == user }
-    friendship.status = true
-    friendship.save
+    friendship = inverse_friendships.where("user_id=#{user}").take
+    friendship.update(status: true)
+  
   end
 
   def friend?(user)
