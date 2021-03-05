@@ -1,9 +1,39 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
+  <h2><%= "ID: #{@user.id}" %></h2>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
       <%= render @posts %>
     </ul>
   </article>
+  <h2>Friends</h2>
+
+<table>
+  <tr><th>Name of Friends</th></tr>
+  <% @friend_list.each do |f| %>
+  <tr><td><%= f.name %></td></tr>
+<% end %>
+</table>
+
+<% if current_user.id == @user.id %> 
+  <table>
+    <tr><th>Friend Requests Received</th></tr>
+        <% @req_rec.each do |f| %>
+    <tr><td>
+        <%= f.name %> <br/>
+        <%= link_to 'Accept',  friendship_path(f.id), class: 'profile-link' %>
+    </td></tr>    
+        <% end %>
+  </table>
+
+  <table>
+    <tr><th>Friend Requests Pending</th></tr>
+        <% @req_send.each do |f| %>
+        <%= link_to 'Reject',  friendship_path(f.id), class: 'profile-link' %>
+    <tr><td><%= f.name %></td></tr>
+        <% end %>
+  </table>
+<% end %>
+
 </section>
