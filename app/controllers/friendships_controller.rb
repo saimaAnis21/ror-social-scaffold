@@ -7,12 +7,16 @@ class FriendshipsController < ApplicationController
     end
 
     def create
-      @req = Friendship.create(user_id: current_user.id, friend_id: params[:friend_id], status: false)
-  
-      if @req.save
-        redirect_to user_path(params[:friend_id])
-      else
-        redirect_to users_path
+      @friend = User.find(params[:friend_id])
+      @user = User.find(current_user.id)
+      if !@user.friend?(@friend)
+        @req = Friendship.create(user_id: current_user.id, friend_id: params[:friend_id], status: false)
+
+        if @req.save
+          redirect_to user_path(params[:friend_id])
+        else
+          redirect_to users_path
+        end
       end
     end
   

@@ -32,12 +32,9 @@ class User < ApplicationRecord
   def confirm_friend(user)
     friendship = inverse_friendships.where("user_id=#{user}").take
     friendship.update(status: true)
-  
   end
 
-  
-
   def friend?(user)
-    friends.include?(user)
+    friends.include?(user.id)
   end
 end
