@@ -22,7 +22,8 @@
         <% @req_rec.each do |f| %>
     <tr><td>
         <%= f.name %> <br/>
-        <%= link_to 'Accept',  friendship_path(f.id), class: 'profile-link' %>
+        <%= link_to 'Accept',  friendship_path(f.id), class: 'profile-link' %><br/>
+        <%= link_to 'Reject',  friendship_path(f.id), class: 'profile-link' %>
     </td></tr>    
         <% end %>
   </table>
@@ -30,7 +31,6 @@
   <table>
     <tr><th>Friend Requests Pending</th></tr>
         <% @req_send.each do |f| %>
-        <%= link_to 'Reject',  friendship_path(f.id), class: 'profile-link' %>
     <tr><td><%= f.name %></td></tr>
         <% end %>
   </table>
