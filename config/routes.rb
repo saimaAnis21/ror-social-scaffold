@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :friendships, only: [:new, :update, :destroy]
   get 'friendships/(:id)', to: 'friendships#update'
+  delete 'friendships/(:id)', to: 'friendships#destroy'
   resources :posts, only: [:index, :create] do
     resources :comments, only: [:create]
     resources :likes, only: [:create, :destroy]

@@ -23,7 +23,8 @@
     <tr><td>
         <%= f.name %> <br/>
         <%= link_to 'Accept',  friendship_path(f.id), class: 'profile-link' %><br/>
-        <%= link_to 'Reject',  friendship_path(f.id), method: :destroy,  class: 'profile-link' %>
+        <%= link_to 'Reject',  friendship_path(f.id), :confirm => 'Are you sure?', :method => :delete,  class: 'profile-link' %>
+                    
     </td></tr>    
         <% end %>
   </table>
