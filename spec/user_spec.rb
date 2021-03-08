@@ -22,7 +22,6 @@ RSpec.describe 'User', type: :model do
   end
 end
 
-
 describe 'associations' do
   it 'should have many friends' do
     t = User.reflect_on_association(:friendships)
@@ -37,11 +36,11 @@ end
 
 RSpec.feature 'Users' do
   before(:each) do
-    @user = User.create(name: 'user1', email: 'user1@mail.com', password:'123456')
-    @user = User.create(name: 'user2', email: 'user2@mail.com', password:'123456')
+    @user = User.create(name: 'user1', email: 'user1@mail.com', password: '123456')
+    @user = User.create(name: 'user2', email: 'user2@mail.com', password: '123456')
   end
 
-   scenario 'user1 sends friendship request and user2 accepts the request' do
+  scenario 'user1 sends friendship request and user2 accepts the request' do
     visit root_path
     fill_in 'Email', with: 'user1@mail.com'
     fill_in 'Password', with: '123456'
@@ -53,7 +52,7 @@ RSpec.feature 'Users' do
     expect(page).to have_current_path('/users/1')
     expect(page).to have_content 'user2'
     click_on 'Sign out'
-    
+
     fill_in 'Email', with: 'user2@mail.com'
     fill_in 'Password', with: '123456'
     click_on 'Log in'

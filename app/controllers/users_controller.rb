@@ -12,7 +12,4 @@ class UsersController < ApplicationController
     @req_rec = User.find(@user.friend_requests)
     @req_send = User.find(@user.pending_friends)
   end
-   
-  
-
 end
