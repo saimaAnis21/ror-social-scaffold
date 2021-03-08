@@ -13,7 +13,7 @@ class FriendshipsController < ApplicationController
         @req = Friendship.create(user_id: current_user.id, friend_id: params[:friend_id], status: false)
 
         if @req.save
-          redirect_to user_path(params[:friend_id])
+          redirect_to user_path(current_user.id)
         else
           redirect_to users_path
         end

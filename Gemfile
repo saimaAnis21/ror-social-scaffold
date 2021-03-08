@@ -56,7 +56,13 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec'
+  gem 'rspec', '~> 3.9'
+   # Adds support for Capybara system testing and selenium driver
+ 
+  gem 'database_cleaner', '~> 2.0', '>= 2.0.1'
+  gem 'selenium-webdriver'
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
 end
 
 group :development do
