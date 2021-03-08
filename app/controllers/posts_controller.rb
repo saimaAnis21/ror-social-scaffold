@@ -20,12 +20,10 @@ class PostsController < ApplicationController
   private
 
   def timeline_posts
-    @users = User.all
-    @timeline_posts = []
-    @timeline_posts << Post.where("user_id= #{current_user.id}").take
-    @users.each do |f|
-      @timeline_posts << Post.where("user_id= #{f.id}").take if current_user.friend?(f)
-    end
+    frnds = current_user.friends
+    frnds << current_user.id
+
+    @timeline_posts = Post.all.where(user_id: frnds)
   end
 
   def post_params
