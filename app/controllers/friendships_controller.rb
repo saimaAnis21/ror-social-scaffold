@@ -8,7 +8,8 @@ class FriendshipsController < ApplicationController
   def create
     @friend = User.find(params[:friend_id])
     @user = User.find(current_user.id)
-    if @user.friend?(@friend)
+    #  
+    if @user.friend?(@friend) || @friend.id==current_user.id || @user.pending_friends.include?(@friend.id) || @user.friend_requests.include?(@friend.id)
       nil
     else
 
