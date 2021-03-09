@@ -1,3 +1,4 @@
+# rubocop:disable Layout/LineLength
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
 
@@ -8,8 +9,7 @@ class FriendshipsController < ApplicationController
   def create
     @friend = User.find(params[:friend_id])
     @user = User.find(current_user.id)
-    #  
-    if @user.friend?(@friend) || @friend.id==current_user.id || @user.pending_friends.include?(@friend.id) || @user.friend_requests.include?(@friend.id)
+    if @user.friend?(@friend) || @friend.id == current_user.id || @user.pending_friends.include?(@friend.id) || @user.friend_requests.include?(@friend.id)
       nil
     else
 
@@ -39,3 +39,4 @@ class FriendshipsController < ApplicationController
     redirect_to user_path(current_user.id)
   end
 end
+# rubocop:enable Layout/LineLength
