@@ -1,4 +1,6 @@
 # rubocop:disable Metrics/PerceivedComplexity
+# rubocop:disable Layout/LineLength
+
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
 
@@ -9,9 +11,8 @@ class FriendshipsController < ApplicationController
   def create
     @friend = User.find(params[:friend_id])
     @user = User.find(current_user.id)
-    return nil if @user.pending_friends.include?(@friend.id) || @user.friend_requests.include?(@friend.id)
 
-    if @user.friend?(@friend) || @friend.id == current_user.id
+    if @user.friend?(@friend) || @friend.id == current_user.id || @user.pending_friends.include?(@friend.id) || @user.friend_requests.include?(@friend.id)
       nil
     else
 
@@ -43,3 +44,4 @@ class FriendshipsController < ApplicationController
 end
 
 # rubocop:enable Metrics/PerceivedComplexity
+# rubocop:enable Layout/LineLength

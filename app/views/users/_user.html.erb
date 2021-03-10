@@ -2,7 +2,7 @@
   Name: <%= user.name %>
   <span class="profile-link">
     <%= link_to 'See Profile',  user_path(user), class: 'profile-link', id: user.id %>
-    <% if !a_friend?(current_user, user) %>
+    <% if !a_friend?(current_user, user) && current_user.id !=user.id %>
     <%= button_to 'Request Friendship',  friendships_path(friend_id: user.id), class: 'btn-primary' %>
     <% end %>
   </span>
