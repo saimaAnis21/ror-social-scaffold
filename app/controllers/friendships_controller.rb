@@ -1,5 +1,4 @@
 # rubocop:disable Layout/LineLength
-# rubocop:disable Metrics/PerceivedComplexity
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
 
@@ -41,4 +40,3 @@ class FriendshipsController < ApplicationController
   end
 end
 # rubocop:enable Layout/LineLength
-# rubocop:enable Metrics/PerceivedComplexity

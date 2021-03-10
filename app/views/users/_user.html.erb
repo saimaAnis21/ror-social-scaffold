@@ -2,5 +2,6 @@
   Name: <%= user.name %>
   <span class="profile-link">
     <%= link_to 'See Profile',  user_path(user), class: 'profile-link', id: user.id %>
+    <%= button_to 'Request Friendship',  friendships_path(friend_id: user.id), class: 'btn-primary' %>
   </span>
 </li>
