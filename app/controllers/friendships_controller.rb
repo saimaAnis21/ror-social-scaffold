@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/PerceivedComplexity
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
 
@@ -40,3 +41,5 @@ class FriendshipsController < ApplicationController
     redirect_to user_path(current_user.id)
   end
 end
+
+# rubocop:enable Metrics/PerceivedComplexity
