@@ -11,8 +11,6 @@ RSpec.describe 'User', type: :model do
     expect(user).to be_valid
   end
 
-
-
   it 'is not valid with only username' do
     user = User.create(name: 'James')
     expect(user).to_not be_valid
@@ -49,8 +47,8 @@ RSpec.feature 'Users' do
     click_on 'Log in'
     expect(current_path).to eql(root_path)
     click_on 'All users'
-    first(:button, "Request Friendship").click
-    #click_on 'Request Friendship'
+    first(:button, 'Request Friendship').click
+    # click_on 'Request Friendship'
     expect(page).to have_current_path('/users/1')
     expect(page).to have_content 'user2'
     click_on 'Sign out'

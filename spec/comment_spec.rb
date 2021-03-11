@@ -31,7 +31,8 @@ RSpec.feature 'Users' do
     page.find_by_id(1).click
     fill_in 'comment_content', with: 'This is a test comment!'
     click_on 'Comment'
+    click_on 'All users'
+    page.find_by_id(1).click
     expect(page).to have_content 'This is a test comment!'
-    sleep(10)
   end
 end

@@ -17,43 +17,16 @@ module ApplicationHelper
   end
 
   def a_friend?(user, friend)
-    return true if user.friends.include?(friend) || user.pending_friends.include?(friend) || user.friend_requests.include?(friend)
+    if user.friends.include?(friend) || user.pending_friends.include?(friend) || user.friend_requests.include?(friend)
+      true
+    end
   end
 
   def req_fri_btn(userid)
-    content=''
-    if current_user.id != userid
-      content << "<%= button_to 'Request Friendship',  friendships_path(friend_id: @user.id), class: 'btn-primary' %><br/><br/>"
-      content.html_safe
-    end
-  end
+    content = ''
+    content << "#{button_to 'Request Friendship', friendships_path(friend_id: @user.id),
+                            class: 'btn-primary'}<br/><br/>"
 
-  def list_requests(userid)
-    content=''
-    if current_user.id == userid
-      content << "<h4>Friend Requests Received</h4>
-      <table>
-        <% @req_rec.each do |f| %>
-        <tr><td>
-        
-            <div class='btn-ar'>
-              <%= f.name %>
-              <%= button_to 'Accept',  friendship_path(f.id),:method => :put, class: 'btn-primary m-left-10' %>
-              <%= button_to 'Reject',  friendship_path(f.id), :confirm => 'Are you sure?', :method => :delete,  class: 'btn-primary m-left-5' %>
-            </div>
-        </td></tr>    
-        <% end %>
-      </table>      
-         <br/>
-      <table>
-        <tr><th>Friend Requests Pending</th></tr>
-            <% @req_send.each do |f| %>
-        <tr><td><%= f.name %></td></tr>
-            <% end %>
-      </table>
-        "
-      content.html_safe
-    end
+    return content.html_safe unless current_user.id != userid
   end
-
 end

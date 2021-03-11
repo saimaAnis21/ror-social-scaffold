@@ -1,5 +1,5 @@
-# rubocop:disable Metrics/PerceivedComplexity
 # rubocop:disable Layout/LineLength
+# rubocop:disable Metrics/PerceivedComplexity
 
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
@@ -29,7 +29,7 @@ class FriendshipsController < ApplicationController
   def update
     usr = User.find(current_user.id)
     usr.confirm_friend(params[:id])
-    frnd = Friendship.create(user_id:current_user.id, friend_id:params[:id], status: true)
+    frnd = Friendship.create(user_id: current_user.id, friend_id: params[:id], status: true)
     if usr.save && frnd.save
       redirect_to user_path(current_user.id)
     else
@@ -44,5 +44,5 @@ class FriendshipsController < ApplicationController
   end
 end
 
-# rubocop:enable Metrics/PerceivedComplexity
 # rubocop:enable Layout/LineLength
+# rubocop:enable Metrics/PerceivedComplexity
