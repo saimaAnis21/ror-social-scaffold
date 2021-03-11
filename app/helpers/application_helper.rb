@@ -17,6 +17,6 @@ module ApplicationHelper
   end
 
   def a_friend?(user, friend)
-    user.friend?(friend)
+    user.friends.include?(friend)
   end
 end

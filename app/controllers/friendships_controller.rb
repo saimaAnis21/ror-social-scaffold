@@ -12,7 +12,7 @@ class FriendshipsController < ApplicationController
     @friend = User.find(params[:friend_id])
     @user = User.find(current_user.id)
 
-    if @user.friend?(@friend) || @friend.id == current_user.id || @user.pending_friends.include?(@friend.id) || @user.friend_requests.include?(@friend.id)
+    if @user.friends.include?(@friend) || @friend.id == current_user.id || @user.pending_friends.include?(@friend) || @user.friend_requests.include?(@friend)
       nil
     else
 
@@ -29,7 +29,8 @@ class FriendshipsController < ApplicationController
   def update
     usr = User.find(current_user.id)
     usr.confirm_friend(params[:id])
-    if usr.save
+    frnd = Friendship.create(user_id:current_user.id, friend_id:params[:id], status: true)
+    if usr.save && frnd.save
       redirect_to user_path(current_user.id)
     else
       redirect_to users_path
