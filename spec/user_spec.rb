@@ -47,8 +47,10 @@ RSpec.feature 'Users' do
     click_on 'Log in'
     expect(current_path).to eql(root_path)
     click_on 'All users'
-    page.find_by_id(2).click
-    click_on 'Request Friendship'
+    sleep(15)
+    first(:button, "Request Friendship").click
+    #click_on 'Request Friendship'
+    sleep(5)
     expect(page).to have_current_path('/users/1')
     expect(page).to have_content 'user2'
     click_on 'Sign out'
