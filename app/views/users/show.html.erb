@@ -1,9 +1,9 @@
 <section class="user-section">
   <h2><%= "Name: #{@user.name}" %></h2>
   <h2><%= "ID: #{@user.id}" %></h2>
-  <% if !@user.id==current_user.id %>
-  <%= button_to 'Request Friendship',  friendships_path(friend_id: @user.id), class: 'btn-primary' %><br/><br/>
-  <% end %>
+  
+  <% req_fri_btn(@user.id) %><br/><br/>
+  
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">
@@ -19,29 +19,10 @@
       <% end %>
     </table>
      <br/>
-  <% if current_user.id == @user.id %> 
-     <h4>Friend Requests Received</h4>
-    <table>
-      <% @req_rec.each do |f| %>
-      <tr><td>
-      
-          <div class="btn-ar">
-            <%= f.name %>
-            <%= button_to 'Accept',  friendship_path(f.id),:method => :put, class: 'btn-primary m-left-10' %>
-            <%= button_to 'Reject',  friendship_path(f.id), :confirm => 'Are you sure?', :method => :delete,  class: 'btn-primary m-left-5' %>
-          </div>
-      </td></tr>    
-      <% end %>
-    </table>      
-       <br/>
-    <table>
-      <tr><th>Friend Requests Pending</th></tr>
-          <% @req_send.each do |f| %>
-      <tr><td><%= f.name %></td></tr>
-          <% end %>
-    </table>
-      
-  <% end %>
+
+  <% list_requests(@user.id) %> 
+     
+  
      
 
 </section>
