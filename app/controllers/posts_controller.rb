@@ -20,10 +20,12 @@ class PostsController < ApplicationController
   private
 
   def timeline_posts
-    frnds = current_user.friends.map(&:id)
-    frnds << current_user.id
+    @timeline_posts = current_user.friends_and_own_posts
 
-    @timeline_posts = Post.all.where(user_id: frnds)
+    # frnds = current_user.friends.map(&:id)
+    # frnds << current_user.id
+
+    # @timeline_posts = Post.all.where(user_id: frnds)
   end
 
   def post_params
