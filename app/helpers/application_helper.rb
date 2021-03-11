@@ -1,3 +1,4 @@
+# rubocop:disable Style/GuardClause
 module ApplicationHelper
   def menu_link_to(link_text, link_path)
     class_name = current_page?(link_path) ? 'menu-item active' : 'menu-item'
@@ -27,6 +28,7 @@ module ApplicationHelper
     content << "#{button_to 'Request Friendship', friendships_path(friend_id: @user.id),
                             class: 'btn-primary'}<br/><br/>"
 
-    return content.html_safe unless current_user.id != userid
+    return content.html_safe unless current_user.id == userid
   end
 end
+# rubocop:enable Style/GuardClause
